@@ -1,12 +1,26 @@
 #pragma once
 
-#ifndef UTILS_H;
+#ifndef UTILS_H
+#define UTILS_H
 
-//è®¾ç½®ç•Œé¢çª—å£å¤§å°
+#include<bits/stdc++.h>
+
+//ÓÎÏ·×´Ì¬
+enum GameState { playing, stopping, ended };
+
+//³¡¾°Ä£Ê½£ºÇ°Ìü£¬ºóÌü£¬Êé·¿£¬¹Ç·¿£¬¶«ÎÔÊÒ£¬Î÷ÎÔÊÒ
+enum SceneMode { frontHall, backHall, studyRoom, boneRoom, eastBedRoom, westBedRoom };
+
+//³¡¾°½çÃæ´°¿Ú´óĞ¡
+const int WINDOW_WIDTH = 1200;
+const int WINDOW_HEIGHT = 800;
+
+//ÉèÖÃ½çÃæ´°¿Ú´óĞ¡
 const int SETTING_WINDOW_WIDTH = 600;
 const int SETTING_WINDOW_HEIGHT = 400;
 
-//å›¾ç‰‡è¯»å–å¹¶åœ¨çª—å£ä¸­æ˜¾ç¤º
+//Í¼Æ¬¶ÁÈ¡²¢ÔÚ´°¿ÚÖĞÏÔÊ¾
+void showImage(std::string path, int x, int y, int width, int height);
 
 
 
