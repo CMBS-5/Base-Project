@@ -1,0 +1,1585 @@
+#include <graphics.h>		// 引用图形库头文件
+#include <conio.h>
+#include<string>
+#include<iostream>
+#include<stack>
+#include<random>
+#include<cstdlib>
+#include<ctime>
+#include<algorithm>
+#pragma comment( lib, "MSIMG32.LIB")
+//#pragma comment(lib,"Winmm.lib")
+using  namespace std;
+int jingli=100;
+int yys=0;
+int TIME = 0;
+int ban = 0;
+int hunluandu = 50;
+LOGFONT f;
+LOGFONT yyf;
+stack<string>info;
+void huaxian() {
+	for (int i = 0; i < 1200; i += 50) {
+		line(i, 0, i, 900);
+	}
+	for (int i = 0; i < 900; i += 50) {
+		line(0, i, 1200, i);
+	}
+}
+void ztl() {
+	jingli--;
+	if (ban>>2) {
+		TIME++;
+		if (TIME == 12) {
+			TIME = 0;
+		}
+		ban =0;
+	}
+	else {
+		ban ++;
+	}
+	setfillcolor(0x2D3244);
+	solidrectangle(1200, 0, 1300, 900);
+	setbkmode(OPAQUE);
+	setbkmode(TRANSPARENT);
+	//gettextstyle(&f);
+	f.lfHeight = 20;						// 设置字体高度
+	_tcscpy_s(f.lfFaceName, _T("宋体"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	settextcolor(0xFFFFFF);
+	char t[20] = "";
+	string st = "精力：" + to_string(jingli);
+	strcpy_s(t, st.c_str());
+	outtextxy(1210, 150, t);
+	st = "阴阳术:" + to_string(yys);
+	strcpy_s(t, st.c_str());
+	outtextxy(1205, 200, t);
+	st = "时辰：" + to_string(TIME);
+	strcpy_s(t, st.c_str());
+	outtextxy(1210, 50, t);
+	//IMAGE img;
+	//loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\R-C.jpg"));
+	//putimage(1225, 800, &img);	
+	setlinecolor(0);
+	setlinestyle(PS_SOLID | PS_ENDCAP_FLAT, 5);
+	circle(1250, 800, 30);
+	circle(1250, 780, 1);
+	circle(1250, 800, 1);
+	circle(1250, 820, 1);
+}
+void begin();
+void mkxzz();
+void qianzhuo();
+void zhongbiao();
+void zzxx();
+void xcg();
+void zzxd();
+void dcg();
+
+void mkxd();
+void mkxx();
+void dz();
+void xz();
+
+void htdb();
+void htxb();
+void htzb();
+void zycz();
+
+void xchc();
+void xcdf();
+
+void dcyg();
+void dcdf();
+
+void zw();
+void zwxz();
+void zwyg();
+
+void kw();
+void kwxz();
+
+void gfmk();
+void fg();
+void gfn();
+
+void sfmk();
+void sfn();
+////
+void fail() {
+	setbkmode(TRANSPARENT);
+	gettextstyle(&f);
+	f.lfHeight = 48;						// 设置字体高度为 48
+	_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	outtextxy(400, 100, _T("很遗憾，游戏结束"));
+	outtextxy(400, 500, _T("点击任意位置退出"));
+	yys = max(yys - 3, 0);
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+
+			return begin();
+		}
+	}
+}
+/// //////////////////////////////////////////////////
+void mkxzzcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向主座.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+	clock_t start;
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+	
+	
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+	
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“你来我地相庐，所为何事啊？”"));
+	
+	settextcolor(0xFFFFFF);
+	outtextxy(250, 300, _T("晚辈是误入此地，敢问前辈这是何处？"));
+	outtextxy(420, 400, _T("晚辈想求阴阳术。"));
+	//setbkmode(TRANSPARENT);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 250 && m.x < 950) {
+				loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向主座.jpg"));
+				jingli++; ban = max(0, ban - 1);
+				ztl();
+				loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+				HDC dstDC = GetImageHDC(NULL);
+				HDC srcDC = GetImageHDC(&img);
+				BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+				AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+				yyf.lfHeight = 50;						// 设置字体高度为 
+				_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+				yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextcolor(0x0055AA);					//设置字体颜色huang
+				settextstyle(&yyf);						// 设置字体样式
+				if (m.y > 300 && m.y < 400) {
+					outtextxy(50, 650, _T("“此地是地相庐，是我历代地相堪舆先生的观世之地。"));
+					outtextxy(100, 690, _T("观你的面相，应是连日劳顿，大可在此暂歇片刻。”"));
+					hunluandu --;
+				}
+				if (m.y > 400 && m.y < 500) {
+					outtextxy(50, 650, _T("“我地相堪舆一脉单传，下代出，上代死，必传阴生子。"));
+					outtextxy(100, 690, _T("你与我地相无缘，但天元道场广收门徒，"));
+					outtextxy(150, 730, _T("你可去天心十道寻吾兄蒋盘。”"));
+					yys++;
+					hunluandu -= 2;
+				}
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				start = clock();
+				while (clock() - start < 5 * CLOCKS_PER_SEC) {}
+				jingli++;
+				return mkxzz();
+			}
+		}
+	}
+	return mkxzz();
+}
+void mkxxcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向西.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+	
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“阴气盛则百草生。符术中的大符，恰有折返阴阳二气之效。”"));
+	hunluandu --;
+	start = clock();
+	while (clock() - start < 3*CLOCKS_PER_SEC) {}
+	jingli++;
+	return mkxx();
+}
+void mkxdcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向东.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“虾须蟹眼金鱼水，生气吹拂而成，倒是好看。"));
+	outtextxy(80, 700, _T("可是那屏风上，师祖徐符画的大符……"));
+	outtextxy(110, 750, _T("心存恶念之人看了，可是能活活看死在这！”"));
+	hunluandu++;
+	yys++; jingli -= 5;
+	start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	jingli++;
+	return mkxd();
+}
+void dzcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-东座.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769683829.png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	
+	AlphaBlend(dstDC, 150, 450, 160, 200, srcDC, 0, 0, 160, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“甚是抱歉，在下忘了时辰，晾了阁下许久。"));
+	outtextxy(80, 700, _T("但今日已晚，还请先行回府，点宅之事明日再叙。”"));
+	hunluandu--;
+	start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	jingli++;
+	return dz();
+}
+void xzcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-西座.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769730615.png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+
+	AlphaBlend(dstDC, 150, 480, 160, 200, srcDC, 0, 0, 160, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("隶书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	start = clock();
+	outtextxy(50, 650, _T("“师……师尊？真的是您么？"));
+	while (clock() - start <  CLOCKS_PER_SEC) {}
+	outtextxy(80, 700, _T("阴阳这条命……不苦。"));
+	while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+	outtextxy(110, 750, _T("阴阳也不忘师尊教导……回来了！”"));
+	while (clock() - start < 5 * CLOCKS_PER_SEC) {}
+	hunluandu -= 5;
+	jingli++;
+	return xz();
+}
+void zzxdcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-主座向东.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“李某虽好客，但外人欲窥后室，着实无礼。”"));
+	hunluandu++;
+	start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	return zzxd();
+}
+void zzxxcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-主座向西.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“李某虽好客，但外人欲窥后室，着实无礼。”"));
+	hunluandu++;
+	start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	return zzxx();
+}
+
+void jyhs() {
+	//loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向主座.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769819906.png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("隶书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0000AA);					//设置字体颜色red
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“阳人阳方去，阴人阴无方！甲丙庚壬位，乾长总为阳！"));
+	outtextxy(100, 700, _T("地相堪舆大先生的位子，不容心术歹毒之人玷污!”"));
+	hunluandu += max(20 - yys, 5);
+	jingli +=min(yys-100-TIME,0);
+	ztl();
+	start = clock();
+	while (clock() - start < 2*CLOCKS_PER_SEC) {}
+	
+	return fail();
+}
+void qts() {
+	//loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向主座.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769819906.png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0000AA);					//设置字体颜色red
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“八连十一下，十三五中殇，十六并十二，如斯凶者亡！"));
+	outtextxy(100, 700, _T("觊觎地相堪舆者，当有魂飞魄散的觉悟!”"));
+	hunluandu ++;
+	jingli += min(yys - 100 - TIME, 0);
+	ztl();
+	start = clock();
+	while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+
+	return fail();
+}
+
+void htxbcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(1)\\纵观-后厅西部.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“来者是客，一起用餐何如？”"));
+	hunluandu--;
+	jingli+=10;
+	start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	return htxb();
+}
+
+void htdbcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(1)\\纵观-后厅东部.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769683829.png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+
+	AlphaBlend(dstDC, 150, 450, 160, 200, srcDC, 0, 0, 160, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“遁空？你符术出黑死里逃生了？！”"));
+	hunluandu--;
+	start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	return htdb();
+}
+
+void htzbcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(1)\\纵观-后厅中部.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“此间阴阳二气交接，吃饭倒是舒服”"));
+	hunluandu--;
+	yys++;
+	start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	return htzb();
+}
+void zwcc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(2)\\纵观-主卧室.jpg"));
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769835449(1)(1).png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0055AA);					//设置字体颜色huang
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“遁空，头又疼了么？"));
+	outtextxy(70, 690, _T("只是我们现在不能去找廖叔叔，这是先生之间的约定……”"));
+	hunluandu++;
+	yys++;
+	start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	return zw();
+}
+void zws() {
+	jingli++; ban = max(0, ban - 1);
+	ztl();
+	clock_t start = clock();
+	while (clock() - start < CLOCKS_PER_SEC) {}
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\人物素材\\blob-Draft-1685769819906.png"));
+	HDC dstDC = GetImageHDC(NULL);
+	HDC srcDC = GetImageHDC(&img);
+	BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(dstDC, 150, 450, 200, 200, srcDC, 0, 0, 200, 200, bf);
+
+
+	//setbkmode(OPAQUE);
+	//setbkmode(TRANSPARENT);
+
+	yyf.lfHeight = 50;						// 设置字体高度为 
+	_tcscpy_s(yyf.lfFaceName, _T("楷书"));		// 设置字体
+	yyf.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextcolor(0x0000AA);					//设置字体颜色red
+	settextstyle(&yyf);						// 设置字体样式
+	outtextxy(50, 650, _T("“是日值亡，仙命本亡，除灵大吉！"));
+	outtextxy(100, 700, _T("让你出去死不是怜悯你，是怕你脏了我和雉儿的卧房！”"));
+	hunluandu++;
+	yys += 5;
+	jingli = 5;
+	ztl();
+	start = clock();
+	while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+
+	return htdb();
+}
+
+void gfncc() {
+
+}
+void gfs() {
+
+}
+
+void sfncc() {
+
+}
+void sfs() {
+
+}
+/// ///////////////////////////////////////////////////
+//开始
+void begin() {
+	jingli = 100;
+	//yys = 0;
+	TIME = 0;
+	initgraph(1300, 900);	// 创建绘图窗口
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片素材与解说\\开局素材\\begin(1).png"));
+	setbkmode(OPAQUE);
+	setbkmode(TRANSPARENT);
+	gettextstyle(&f);
+	f.lfHeight = 48;						// 设置字体高度为 48
+	_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	outtextxy(400, 800, _T("点击任意位置开始"));
+
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			
+			return mkxzz();
+		}
+	}
+}
+
+//门口向主座
+void mkxzz() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向主座.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(260, 400, &img);
+	putimage(150, 750, &img);
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\r.jpg"));
+	putimage(880, 400, &img);
+	putimage(1000, 750, &img);
+
+	int rrr=rand() % 100;
+	if (rrr < 10)
+		return mkxzzcc();
+	else if (rrr > 96)
+		return qts();
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 260 && m.x < 300 && m.y>400 && m.y < 440) {
+				return zzxx();
+			}
+			if (m.x > 150 && m.x < 290 && m.y>750 && m.y < 790) {
+				return mkxx();
+			}
+			if (m.x > 880 && m.x < 920 && m.y>400 && m.y < 440) {
+				return zzxd();
+			}
+			if (m.x > 1000 && m.x < 1040 && m.y>750 && m.y < 790) {
+				return mkxd();
+			}
+			if (m.x > 400 && m.x < 500 && m.y>400 && m.y < 550) {
+				return xz();
+			}
+			if (m.x > 700 && m.x < 800 && m.y>400 && m.y < 550) {
+				return dz();
+			}
+			if (m.x > 500 && m.x < 670 && m.y>450 && m.y < 550) {
+				return qianzhuo();
+			}
+			if (m.x > 550 && m.x < 650 && m.y>300 && m.y < 400) {
+				return zhongbiao();
+			}
+		}
+	}
+}
+void qianzhuo() {
+	//setbkmode(OPAQUE);
+	setbkmode(TRANSPARENT);
+	//gettextstyle(&f);						// 获取当前字体设置
+	f.lfHeight = 30;						// 设置字体高度为 
+	_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	settextcolor(0xFFFFFF);					//设置字体颜色
+	outtextxy(150, 20, _T("恍惚间，你似乎感觉这桌子上应该放着一块砚台，上头搭着一支笔。"));
+	outtextxy(400, 52, _T("还有一个铜罗盘和金算盘……"));
+	clock_t start = clock();
+	while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+	jingli++;
+	return mkxzz();
+}
+void zhongbiao() {
+	//setbkmode(OPAQUE);
+	setbkmode(TRANSPARENT);
+	//gettextstyle(&f);						// 获取当前字体设置
+	f.lfHeight = 30;						// 设置字体高度为 
+	_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	settextcolor(0xFFFFFF);					//设置字体颜色
+	outtextxy(250, 20, _T("这组钟表的指针很是奇怪，它们永远指向正午十二时"));
+	clock_t start = clock();
+	while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+	jingli++;
+	return mkxzz();
+}
+
+//主座向西
+void zzxx() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-主座向西.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\d.jpg"));
+	putimage(600, 800, &img);
+	huaxian();
+	int rrr = rand() % 100;
+	if (rrr < 20)
+		return zzxxcc();
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 400 && m.x < 700 && m.y>400 && m.y < 600) {
+				return xcg();
+			}
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return mkxzz();
+			}
+			if (m.x > 900 && m.x < 1000 && m.y>300 && m.y < 700) {
+				return htxb();
+			}
+		}
+	}
+}
+void xcg() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\物品详情-西侧柜.jpg"));
+	ztl();
+	huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return zzxx();
+			}
+			else if (m.x > 300 && m.x < 1000 && m.y>350 && m.y < 450) {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(230, 20, _T("这里面有一些书，你翻了翻，只记住了封面上宅经、骨相等字。"));
+				outtextxy(380, 50, _T("放下书感觉整个人昏昏沉沉。"));
+				yys+=2;
+				jingli -= 10;
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				return xcg();
+			}
+			else if (m.x > 300 && m.x < 1000 && m.y>450 && m.y < 750) {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(370, 20, _T("你伸手一抽，摸到了颗像丹药的东西，"));
+				int rrr = rand() % 100;
+				if (rrr < 44) {
+					outtextxy(400, 50, _T("上面刻着“袁”字，你吃了下去"));
+					jingli += 20;
+					yys-=3;
+				}
+				else if (rrr > 55) {
+					outtextxy(300, 50, _T("你感觉自己的气血似要被吸走，赶紧放了回去"));
+					jingli =max(0,jingli-40);
+				}
+				else {
+					outtextxy(300, 50, _T("这丹温润异常，你摸了一会，便感觉精神百倍"));
+					jingli = max(100,jingli+50);
+					yys += 3;
+				}
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				return xcg();
+			}
+		}
+	}
+}
+
+//主座向东
+void zzxd() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-主座向东.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\d.jpg"));
+	putimage(600, 800, &img);
+	huaxian();
+	int rrr = rand() % 100;
+	if (rrr < 20)
+		return zzxdcc();
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 550 && m.x < 900 && m.y>250 && m.y < 500) {
+				return dcg();
+			}
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return mkxzz();
+			}
+			if (m.x > 250 && m.x < 350 && m.y>100 && m.y < 550) {
+				return htdb();
+			}
+		}
+	}
+}
+void dcg() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\物品详情-东侧柜.jpg"));
+	ztl();
+	//huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return zzxd();
+			}
+			else if (m.x > 450 && m.x < 900 && m.y>350 && m.y < 500) {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(250, 20, _T("里面有一些罗盘和笔砚 ，但奇怪的是你根本拿不起来它们"));
+				yys++;
+				jingli -= 5;
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				return dcg();
+			}
+			else if (m.x > 250 && m.x < 900 && m.y>400 && m.y < 800) {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(400, 20, _T("你伸手一抽，摸到了一张符，"));
+				int rrr = rand() % 100;
+				if (rrr < 33) {
+					outtextxy(400, 50, _T("上面的篆体似乎是个“河”字"));
+					yys++;
+				}
+				else if (rrr > 66) {
+					outtextxy(300, 50, _T("你感觉自己的魂魄似要被吸走，赶紧放了回去"));
+					jingli -= 10;
+					yys += 2;
+				}
+				else {
+					outtextxy(300, 50, _T("这符似乎有千斤重量，你差点摔倒，只能放了回去"));
+					jingli -= 10;
+				}
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				return dcg();
+			}
+		}
+	}
+}
+
+//门口向东
+void mkxd() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向东.jpg"));
+	ztl();
+	//huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\d.jpg"));
+	putimage(600, 800, &img);
+
+	int rrr = rand() % 100;
+	if (rrr < 10)
+		return mkxdcc();
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 450 && m.x < 550 && m.y>450 && m.y < 700) {
+				return dcyg();
+			}
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return mkxzz();
+			}
+			if (m.x > 0 && m.x < 300 && m.y>250 && m.y < 750) {
+				return dcdf();
+			}
+		}
+	}
+}
+void dcyg() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\物品详情-东侧鱼缸.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return mkxd();
+			}
+			else {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(150, 20, _T("里边有一些虾、蟹和金鱼，似乎它们可以和平共生，缸中也没有投喂的痕迹"));
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				return dcyg();
+			}
+		}
+	}
+}
+void dcdf() {
+	setbkmode(TRANSPARENT);
+	//gettextstyle(&f);						// 获取当前字体设置
+	f.lfHeight = 40;						// 设置字体高度为 
+	_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	settextcolor(0xFFFFFF);					//设置字体颜色
+	outtextxy(300, 20, _T("这屏风上的图案看久了使人头痛欲裂。"));
+	if (rand() % 100 < 50) {
+		jingli -= 20;
+		yys += 2;
+	}
+	clock_t start = clock();
+	while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+	jingli++;
+	return mkxd();
+}
+
+//门口向西
+void mkxx() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-门口向西.jpg"));
+	ztl();
+	//huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\d.jpg"));
+	putimage(600, 800, &img);
+
+	int rrr = rand() % 100;
+	if (rrr < 10)
+		return mkxxcc();
+	
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return mkxzz();
+			}
+			if (m.x > 500 && m.x < 800 && m.y>250 && m.y < 500) {
+				return xchc();
+			}
+			if (m.x > 900 && m.x < 1200 && m.y>250 && m.y < 600) {
+				return xcdf();
+			}
+		}
+	}
+}
+void xchc() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\物品详情-西侧花草.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return mkxx();
+			}
+			else {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 60;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(300, 20, _T("这里的草木生长格外旺盛"));
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				jingli++;
+				return xchc();
+			}
+		}
+	}
+}
+void xcdf() {
+	setbkmode(TRANSPARENT);
+	//gettextstyle(&f);						// 获取当前字体设置
+	f.lfHeight = 40;						// 设置字体高度为 
+	_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	settextcolor(0xFFFFFF);					//设置字体颜色
+	outtextxy(300, 20, _T("这屏风上的图案看久了使人昏昏欲睡。"));
+	if (rand() % 100 < 30) {
+		jingli -= 5;
+		yys++;
+	}
+	clock_t start = clock();
+	while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+	jingli++;
+	return mkxx();
+}
+
+//东座
+void dz() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-东座.jpg"));
+	int rrr = rand() % 100;
+	if (rrr < 10)
+		return dzcc();
+	else if (rrr > 92)
+		return qts();
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-东座.jpg"));
+	ztl();
+	setbkmode(TRANSPARENT);
+	f.lfHeight = 35;						// 设置字体高度为 
+	_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	settextcolor(0xFFFFFF);					//设置字体颜色
+	outtextxy(100, 100, _T("坐在这里，你感到夜间的阴气一阵阵地冲刷上来，压得你喘不过气。"));
+	if (rand() % 100 < 50) {
+		jingli -= 20;
+	}
+	yys++;
+	clock_t start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	jingli++;
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-东座.jpg"));
+	ztl();
+	//huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\u.jpg"));
+	putimage(600, 800, &img);
+
+	
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return mkxzz();
+			}
+		}
+	}
+}
+
+//西座
+void xz() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-西座.jpg"));
+	int rrr = rand() % 100;
+	if (rrr < 15)
+		return xzcc();
+	else if (rrr > 88)
+		return jyhs();
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-西座.jpg"));
+	ztl();
+	setbkmode(TRANSPARENT);
+	f.lfHeight = 35;						// 设置字体高度为 
+	_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	settextcolor(0xFFFFFF);					//设置字体颜色
+	outtextxy(300, 100, _T("坐在这里，你感到日出的生气冲刷着你。"));
+	if (rand() % 100 < 20) {
+		jingli += 20;
+	}
+	yys++;
+	clock_t start = clock();
+	while (clock() - start < 3 * CLOCKS_PER_SEC) {}
+	jingli++;
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理\\纵观-西座.jpg"));
+	ztl();
+	//huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\u.jpg"));
+	putimage(600, 800, &img);
+
+
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return mkxzz();
+			}
+		}
+	}
+}
+
+//后厅东部
+void htdb() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(1)\\纵观-后厅东部.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 650, &img);
+	//huaxian();
+	if (rand() % 100 < 20)
+		return htdbcc();
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>650 && m.y < 690) {
+				return htzb();
+			}
+			if (m.x > 1150 && m.x < 1200 && m.y>200 && m.y < 600) {
+				return zw();
+			}
+			if (m.x > 600 && m.x < 800 && m.y>250 && m.y < 500) {
+				return sfmk();
+			}
+			if (m.x > 100 && m.x < 400 && m.y>250 && m.y < 550) {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(300, 20, _T("这屏风两侧手感完全不同，一侧阴寒一侧温润"));
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				jingli -= 9;
+				if (rand() % 100 < 70) {
+					yys++;
+				}
+				return htdb();
+			}
+		}
+	}
+}
+
+//后厅中部
+void htzb() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(1)\\纵观-后厅中部.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(100, 700, &img);
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\r.jpg"));
+	putimage(1150, 500, &img);
+	huaxian();
+	if (rand() % 100 < 30)
+		return htzbcc();
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 100 && m.x < 140 && m.y>700 && m.y < 740) {
+				return htxb();
+			}
+			if (m.x > 1150 && m.x < 1190 && m.y>500 && m.y < 540) {
+				return htdb();
+			}
+			if (m.x > 0 && m.x < 1000 && m.y>250 && m.y < 450) {
+				return zycz();
+			}
+			if (m.x > 0 && m.x < 150 && m.y>0 && m.y < 250) {
+				return gfmk();
+			}
+		}
+	}
+}
+void zycz() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(1)\\物品详情-坐于餐桌.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return htzb();
+			}
+			else{
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(250, 20, _T("恍惚间，你似乎看到了一家三口其乐融融的画面"));
+				//yys++;
+				hunluandu++;
+				if (rand() % 100 < 10) {
+					jingli += 10;
+				}
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				return zycz();
+			}
+		}
+	}
+}
+
+//后厅西部
+void htxb() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(1)\\纵观-后厅西部.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\d.jpg"));
+	putimage(600, 800, &img);
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\r.jpg"));
+	putimage(1000, 400, &img);
+	huaxian();
+	int rrr = rand() % 100;
+	if (rrr < 20)
+		return htxbcc();
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return zzxx();
+			}
+			if (m.x > 150 && m.x < 400 && m.y>50 && m.y < 700) {
+				return kw();
+			}
+			if (m.x > 1000 && m.x < 1040 && m.y>400 && m.y < 440) {
+				return htzb();
+			}
+			if (m.x > 650 && m.x < 700 && m.y>150 && m.y < 40) {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(400, 20, _T("你被一阵阴风推回了原地"));
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				jingli-=9;
+				if (rand() % 100 < 40) {
+					yys++;
+				}
+				return htzb();
+			}
+		}
+	}
+}
+
+//主卧室
+void zw() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(2)\\纵观-主卧室.jpg"));
+	ztl();
+	huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\d.jpg"));
+	putimage(600, 800, &img);
+
+	int rrr = rand() % 100;
+	if (rrr < 30)
+		return zwcc();
+	else if (rrr > 88)
+		return zws();
+
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return htdb();
+			}
+			if (m.x > 650 && m.x < 800 && m.y>300 && m.y < 400) {
+				return zwxz();
+			}if (m.x > 900 && m.x < 1200 && m.y>150 && m.y < 550) {
+				return zwyg();
+			}
+		}
+	}
+}
+void zwxz() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(2)\\物品详情-箱子.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return zw();
+			}
+			else {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(150, 20, _T("箱子里有一些唐装，有些上面写着艰涩的字句，你看了一会便感觉头晕"));
+				yys++;
+				jingli -= 10;
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				jingli++;
+				return zwxz();
+			}
+		}
+	}
+}
+void zwyg() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(2)\\物品详情-衣柜.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return zw();
+			}
+			else {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(150, 20, _T("衣柜里有一些衣服、布料，还有孩童的玩具，一个拨浪鼓放在最上面。"));
+				//yys++;
+				//jingli -= 10;
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				jingli++;
+				return zwyg();
+			}
+		}
+	}
+}
+
+//客卧
+void kw() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(2)\\纵观-客卧室.jpg"));
+	ztl();
+	huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\d.jpg"));
+	putimage(600, 800, &img);
+
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return htxb();
+			}
+			if (m.x > 100 && m.x < 500 && m.y>400 && m.y < 700) {
+				return kwxz();
+			}
+		}
+	}
+}
+void kwxz() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(2)\\物品详情-箱子(1).jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return kw();
+			}
+			else {
+				setbkmode(TRANSPARENT);
+				//gettextstyle(&f);						// 获取当前字体设置
+				f.lfHeight = 30;						// 设置字体高度为 
+				_tcscpy_s(f.lfFaceName, _T("隶书"));		// 设置字体
+				f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+				settextstyle(&f);						// 设置字体样式
+				settextcolor(0xFFFFFF);					//设置字体颜色
+				outtextxy(150, 20, _T("箱子触手冰凉，你心说不好，迅速抽手，但是气血已被吸走一半"));
+				yys++;
+				jingli /=2;
+				clock_t start = clock();
+				while (clock() - start < 2 * CLOCKS_PER_SEC) {}
+				jingli++;
+				return kwxz();
+			}
+		}
+	}
+}
+
+//骨房
+void gfmk() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(2)\\纵观-骨房门口.jpg"));
+	ztl();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\r.jpg"));
+	putimage(1150, 500, &img);
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\d.jpg"));
+	putimage(600, 800, &img);
+	huaxian();
+	int rrr = rand() % 100;
+	//if (rrr < 30)
+		//return htzbcc();
+	//else if (rrr > 80)
+		//return gfs();
+
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 1150 && m.x < 1190 && m.y>550 && m.y < 590) {
+				return gfn();
+			}
+			else if (m.x > 600 && m.x < 640 && m.y>800 && m.y < 840) {
+				return htzb();
+			}
+			else if (m.x > 150 && m.x < 350 && m.y>100 && m.y < 550) {
+				return fg();
+			}
+		}
+	}
+}
+void fg() {
+	loadimage(NULL, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\WPS图片批量处理(2)\\物品详情-符柜.jpg"));
+	ztl();
+	//huaxian();
+	IMAGE img;
+	loadimage(&img, _T("C:\\Users\\ASUS\\Desktop\\地相庐\\图片适配\\l.jpg"));
+	putimage(50, 50, &img);
+	ExMessage m;		// 定义消息变量
+	while (true)
+	{
+		// 获取一条鼠标或按键消息
+		m = getmessage(EX_MOUSE);
+		if (m.lbutton) {
+			if (m.x > 50 && m.x < 90 && m.y>50 && m.y < 90) {
+				return gfmk();
+			}
+			else{
+
+			}
+		}
+	}
+}
+
+void gfn() {
+
+}
+void sfmk() {
+
+}
+void sfn() {
+
+}
+int main()
+{
+	
+	srand(time(nullptr));
+	//PlaySound("C:\\Users\\ASUS\\Desktop\\www.wav", NULL, SND_LOOP | SND_ASYNC);
+	begin();
+
+	_getch();				// 按任意键继续
+	closegraph();			// 关闭绘图窗口
+	return 0;
+}
